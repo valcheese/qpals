@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QPALS GAMING</title>
+    <title>QPALS GAMING | Elite Esports Team</title>
     <link rel="icon" href="Q.jpg">  <!-- Path is relative to index.html -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,6 +38,19 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        .nav-animate {
+            transform: translateY(-100%);
+            opacity: 0;
+            animation: slideDown 0.8s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
         .neon-effect {
@@ -362,7 +375,7 @@
     <div id="particles-js"></div>
     
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-md border-b border-gray-800">
+    <nav class="fixed w-full z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-md border-b border-gray-800 nav-animate">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -377,8 +390,6 @@
                         <a href="#home" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">HOME</a>
                         <a href="#team" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">TEAM</a>
                         <a href="#games" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">GAMES</a>
-                        <a href="#events" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">EVENTS</a>
-                        <a href="#contact" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">CONTACT</a>
                     </div>
                 </div>
                 <div class="flex items-center">
@@ -403,8 +414,6 @@
                 <a href="#home" class="text-white block px-3 py-2 rounded-md text-base font-medium">HOME</a>
                 <a href="#team" class="text-white block px-3 py-2 rounded-md text-base font-medium">TEAM</a>
                 <a href="#games" class="text-white block px-3 py-2 rounded-md text-base font-medium">GAMES</a>
-                <a href="#events" class="text-white block px-3 py-2 rounded-md text-base font-medium">EVENTS</a>
-                <a href="#contact" class="text-white block px-3 py-2 rounded-md text-base font-medium">CONTACT</a>
             </div>
         </div>
     </nav>
@@ -871,7 +880,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto text-center text-gray-400">
