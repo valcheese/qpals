@@ -10,17 +10,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary: #6b21f7;
-            --secondary: #f59e0b;
-            --dark: #0f0e17;
-            --light: #f8fafc;
-            --accent: #e11d48;
+            --primary: #cccccc; /* Dark Gray */
+            --secondary: #f0f0f0; /* Light Gray */
+            --dark: #0a0a0a; /* Near Black */
+            --light: #ffffff; /* Off-White */
+            --accent: #666666; /* Medium Gray */
         }
         
         body {
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--dark);
-            color: white;
+            color: var(--light);
             overflow-x: hidden;
         }
         
@@ -40,21 +40,47 @@
         }
         
         .neon-effect {
-            text-shadow: 0 0 10px rgba(107, 33, 247, 0.7), 
-                         0 0 20px rgba(245, 158, 11, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), /* White glow */
+                         0 0 20px rgba(255, 255, 255, 0.5); /* White glow */
             animation: neonPulse 2s infinite alternate;
         }
         
         @keyframes neonPulse {
             from {
-                text-shadow: 0 0 10px rgba(107, 33, 247, 0.7), 
-                             0 0 20px rgba(245, 158, 11, 0.5);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 
+                             0 0 20px rgba(255, 255, 255, 0.5);
             }
             to {
-                text-shadow: 0 0 15px rgba(107, 33, 247, 0.9), 
-                             0 0 25px rgba(245, 158, 11, 0.7),
-                             0 0 35px rgba(235, 72, 52, 0.5);
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 
+                             0 0 25px rgba(255, 255, 255, 0.7),
+                             0 0 35px rgba(255, 255, 255, 0.5);
             }
+        }
+
+        .white-glow-text {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                         0 0 15px rgba(255, 255, 255, 0.6),
+                         0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .rgb-glow-text {
+            animation: rgbGlow 1.5s linear infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Make text transparent to show background gradient */
+            background-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 200% 100%;
+        }
+
+        @keyframes rgbGlow {
+            0% { background-position: 0% 50%; text-shadow: 0 0 10px rgba(255,0,0,0.7), 0 0 20px rgba(255,0,0,0.5); }
+            14% { background-position: 14% 50%; text-shadow: 0 0 10px rgba(255,165,0,0.7), 0 0 20px rgba(255,165,0,0.5); }
+            28% { background-position: 28% 50%; text-shadow: 0 0 10px rgba(255,255,0,0.7), 0 0 20px rgba(255,255,0,0.5); }
+            42% { background-position: 42% 50%; text-shadow: 0 0 10px rgba(0,128,0,0.7), 0 0 20px rgba(0,128,0,0.5); }
+            56% { background-position: 56% 50%; text-shadow: 0 0 10px rgba(0,0,255,0.7), 0 0 20px rgba(0,0,255,0.5); }
+            70% { background-position: 70% 50%; text-shadow: 0 0 10px rgba(75,0,130,0.7), 0 0 20px rgba(75,0,130,0.5); }
+            84% { background-position: 84% 50%; text-shadow: 0 0 10px rgba(238,130,238,0.7), 0 0 20px rgba(238,130,238,0.5); }
+            100% { background-position: 100% 50%; text-shadow: 0 0 10px rgba(255,0,0,0.7), 0 0 20px rgba(255,0,0,0.5); }
         }
         
         .button-hover-effect {
@@ -82,13 +108,13 @@
             border: 2px solid transparent;
             border-radius: 0.5rem;
             animation: borderGlow 3s linear infinite;
-            box-shadow: 0 0 10px rgba(107, 33, 247, 0.3);
+            box-shadow: 0 0 10px rgba(51, 51, 51, 0.3); /* Dark Gray */
         }
         
         @keyframes borderGlow {
-            0% { box-shadow: 0 0 10px rgba(107, 33, 247, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), 0 0 30px rgba(107, 33, 247, 0.4); }
-            100% { box-shadow: 0 0 10px rgba(107, 33, 247, 0.3); }
+            0% { box-shadow: 0 0 10px rgba(51, 51, 51, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(102, 102, 102, 0.5), 0 0 30px rgba(51, 51, 51, 0.4); }
+            100% { box-shadow: 0 0 10px rgba(51, 51, 51, 0.3); }
         }
         
         .slide-in {
@@ -122,9 +148,15 @@
         .member-card {
             transition: all 0.3s ease;
             perspective: 1000px;
+            height: 380px;
+            margin-bottom: 20px;
         }
         
         .member-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
@@ -132,15 +164,49 @@
         .member-card:hover .member-card-inner {
             transform: rotateY(180deg);
         }
-        
-        /* Loader animation */
-        .loader {
-            border: 5px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            border-top: 5px solid var(--primary);
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
+
+        .member-card-front, .member-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid var(--accent); /* Use accent for border */
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+
+        /* Original profile photo container style - will be overridden for animated ones */
+        .member-card-front .profile-photo-container {
+            border: 1px solid #f1e42c; /* Initial border color */
+            border-radius: 0%;
+            animation: borderColorChange 4s infinite alternate; /* Animate border color */
+        }
+
+        .member-card-front {
+            background-color: #2a2a2a; /* Darker gray */
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem; /* p-6 */
+        }
+
+        .member-card-back {
+            background-color: #3a3a3a; /* Slightly lighter dark gray */
+            overflow: hidden;
+            color: var(--light);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem; /* p-6 */
+            background-size: cover; /* Add this line */
+            background-position: center; /* Add this line */
+            background-repeat: no-repeat; /* Add this line */
+            background-blend-mode: soft-light;
         }
         
         @keyframes spin {
@@ -150,18 +216,24 @@
         
         /* Particle background */
         #particles-js {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.15;
         }
         
         /* Scroll indicator */
         .scroll-indicator {
             animation: bounce 2s infinite;
+        }
+
+        @keyframes borderColorChange {
+            0% { border-color: #bfa100; } /* Dark Gray */
+            50% { border-color: #ffd700; } /* Light Gray */
+            100% { border-color: #ffcc00; }
         }
         
         @keyframes bounce {
@@ -187,6 +259,88 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
+
+        /* NEW STYLES FOR ANIMATED GOLD BORDER WITH PARTICLES */
+        .profile-photo-wrapper {
+            position: relative;
+            width: 128px; /* w-32 h-32 is 128px */
+            height: 128px;
+            border-radius: 50%;
+            margin-bottom: 1rem; /* mb-4 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Hide particles outside the circle */
+        }
+
+        .profile-photo-wrapper .gold-border-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                #f9d423 0%, 
+                #e5b80b 25%, 
+                #d4af37 50%, 
+                #e5b80b 75%, 
+                #f9d423 100%);
+            background-size: 200% 200%;
+            animation: goldShine 3s linear infinite;
+            padding: 1px; /* Border thickness */
+            box-sizing: border-box;
+            z-index: 0; /* Behind the image */
+        }
+        
+        @keyframes goldShine {
+            0% {
+                background-position: 0% 50%;
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            }
+            100% {
+                background-position: 200% 50%;
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            }
+        }
+
+        .profile-photo-wrapper img {
+            width: calc(100% - 8px); /* Adjust for padding */
+            height: calc(100% - 8px); /* Adjust for padding */
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1; /* Above the gold border */
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #f9d423;
+            border-radius: 50%;
+            opacity: 0;
+            filter: drop-shadow(0 0 2px #ffeb3b);
+            animation: rise 4s linear infinite;
+            z-index: 2; /* Above the image */
+        }
+        
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gray-900">
@@ -199,22 +353,22 @@
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <a href="#" class="flex-shrink-0">
-                        <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-600 to-amber-500 flex items-center justify-center neon-effect">
-                            <span class="font-bold text-white">Q</span>
+                        <div class="h-8 w-8 rounded-full bg-gradient-to-r from-gray-700 to-gray-400 flex items-center justify-center neon-effect">
+                            <img src="Q.jpg" alt="QPALS Gaming Logo" class="h-full w-full object-contain rounded-full">
                         </div>
                     </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#home" class="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">HOME</a>
-                        <a href="#team" class="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">TEAM</a>
-                        <a href="#games" class="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">GAMES</a>
-                        <a href="#events" class="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">EVENTS</a>
-                        <a href="#contact" class="text-white hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">CONTACT</a>
+                        <a href="#home" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">HOME</a>
+                        <a href="#team" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">TEAM</a>
+                        <a href="#games" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">GAMES</a>
+                        <a href="#events" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">EVENTS</a>
+                        <a href="#contact" class="text-white hover:text-gray-400 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300">CONTACT</a>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <button class="bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-700 hover:to-amber-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 button-hover-effect">
+                    <button class="bg-gradient-to-r from-gray-700 to-gray-400 hover:from-gray-800 hover:to-gray-500 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 button-hover-effect">
                         JOIN US
                     </button>
                 </div>
@@ -248,26 +402,15 @@
                 QPALS GAMING
             </h1>
             <h2 class="text-2xl md:text-3xl text-gray-300 mb-8 slide-in" style="animation-delay: 0.3s;">
-                DOMINATING THE <span class="text-purple-400 font-bold">COMPETITIVE SCENE</span>
+                TOP-TIER TRASHTALK <span class="font-bold white-glow-text">MID-TIER SKILLS. GOD-TIER VIBES.</span>
             </h2>
             <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-10 slide-in" style="animation-delay: 0.5s;">
-                We are a professional esports organization competing at the highest level in multiple titles. 
-                Our team of elite gamers is dedicated to pushing boundaries and achieving excellence.
+                We're a group of passionate gamers who love playing together, winning (or losing) with style—and never 
+                missing a chance to trashtalk each other along the way. It's all love, just louder.
             </p>
-            <div class="flex flex-wrap justify-center gap-4 slide-in" style="animation-delay: 0.7s;">
-                <button class="bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-700 hover:to-amber-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 button-hover-effect">
-                    OUR TEAM
-                </button>
-                <button class="bg-transparent border-2 border-purple-500 hover:border-amber-500 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 button-hover-effect">
-                    WATCH US LIVE
-                </button>
-            </div>
-            <div class="mt-12">
-                <div class="loader mx-auto"></div>
-            </div>
             <div class="absolute bottom-10 left-0 right-0 flex justify-center">
                 <a href="#team" class="scroll-indicator">
-                    <svg class="w-8 h-8 text-purple-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-8 h-8 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
                 </a>
@@ -276,110 +419,321 @@
     </section>
 
     <!-- Team Section -->
-    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800">
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">OUR ELITE TEAM</h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 rgb-glow-text">OUR ELITE TEAM</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Meet the champions who represent QPALS GAMING on the global stage
+                    Meet the loudmouth legends putting QPALS GAMING on the global map—one trashtalk-fueled win at a time.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- Team Member 1 -->
                 <div class="member-card rounded-lg overflow-hidden">
-                    <div class="member-card-inner relative">
-                        <div class="front bg-gray-900 p-6 rounded-lg border border-gray-700 h-full">
-                            <div class="flex justify-center mb-4">
-                                <div class="w-32 h-32 rounded-full bg-gradient-to-r from-purple-600 to-amber-500 flex items-center justify-center border-2 border-gray-700 animate-pulse">
-                                    <i class="fas fa-user text-5xl text-white"></i>
-                                </div>
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="1">
+                                <img src="nit.jpg" alt="Phoenix profile photo" class="profile-photo">
                             </div>
-                            <h3 class="text-xl font-bold text-center gradient-text">Phoenix</h3>
-                            <p class="text-gray-400 text-center mb-2">Team Captain</p>
+                            <h3 class="text-xl font-bold text-center">Nitzxc</h3>
+                            <p class="text-gray-400 text-center mb-2">Clash Lane</p>
                             <div class="flex justify-center space-x-2 mb-4">
-                                <span class="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded-full">Leader</span>
-                                <span class="px-2 py-1 bg-amber-900 text-amber-200 text-xs rounded-full">Fragger</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #b80404; color: white;">Dota 2</span>
                             </div>
                             <p class="text-gray-300 text-sm text-center">
-                                5x Tournament Champion with exceptional strategic vision and execution.
+                                Hold the lane, sustain pressure, and rotate for team fights
                             </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('wuyan.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Wuyan - Sledgehammer</p>
+                            <p class="text-lg" style="color: white;">Dharma - Martial Monk</p>
+                            <p class="text-lg" style="color: white;">Fuzi - Wise Sage</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/m.rectoo" class="text-white hover:text-gray-400 animate-bounce"><i class="fab fa-facebook"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Team Member 2 -->
                 <div class="member-card rounded-lg overflow-hidden">
-                    <div class="member-card-inner relative">
-                        <div class="front bg-gray-900 p-6 rounded-lg border border-gray-700 h-full">
-                            <div class="flex justify-center mb-4">
-                                <div class="w-32 h-32 rounded-full bg-gradient-to-r from-purple-600 to-amber-500 flex items-center justify-center border-2 border-gray-700 animate-pulse">
-                                    <i class="fas fa-user text-5xl text-white"></i>
-                                </div>
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="2">
+                                <img src="Poleng.jpg" alt="Player profile photo" class="profile-photo">
                             </div>
-                            <h3 class="text-xl font-bold text-center gradient-text">Viper</h3>
-                            <p class="text-gray-400 text-center mb-2">Assault Specialist</p>
+                            <h3 class="text-xl font-bold text-center">Poleeeeeng</h3>
+                            <p class="text-gray-400 text-center mb-2">Jungling</p>
                             <div class="flex justify-center space-x-2 mb-4">
-                                <span class="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded-full">Aggressive</span>
-                                <span class="px-2 py-1 bg-red-900 text-red-200 text-xs rounded-full">Clutch</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #920500; color: white;">Valorant</span>
                             </div>
                             <p class="text-gray-300 text-sm text-center">
-                                Known for lightning-fast reflexes and unmatched close-quarters combat skills.
+                                Farm jungle camps, gank lanes, secure objectives (like Tyrant & Overlord)
                             </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('dun.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Dun - Belligerence</p>
+                            <p class="text-lg" style="color: white;">Angela - Scorchette</p>
+                            <p class="text-lg" style="color: white;">Jing - Broken Mirage</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/Poleeeeeeeeeng" class="text-white animate-bounce hover:text-gray-400"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.youtube.com/@Otitsgaming11" class="text-white animate-bounce hover:text-gray-400"><i class="fab fa-youtube"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Team Member 3 -->
                 <div class="member-card rounded-lg overflow-hidden">
-                    <div class="member-card-inner relative">
-                        <div class="front bg-gray-900 p-6 rounded-lg border border-gray-700 h-full">
-                            <div class="flex justify-center mb-4">
-                                <div class="w-32 h-32 rounded-full bg-gradient-to-r from-purple-600 to-amber-500 flex items-center justify-center border-2 border-gray-700 animate-pulse">
-                                    <i class="fas fa-user text-5xl text-white"></i>
-                                </div>
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="3">
+                                <img src="nathan.jpg" alt="Player profile photo" class="profile-photo">
                             </div>
-                            <h3 class="text-xl font-bold text-center gradient-text">Spectre</h3>
-                            <p class="text-gray-400 text-center mb-2">Sniper</p>
+                            <h3 class="text-xl font-bold text-center">BhossNathan</h3>
+                            <p class="text-gray-400 text-center mb-2">Mid Lane</p>
                             <div class="flex justify-center space-x-2 mb-4">
-                                <span class="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded-full">Precision</span>
-                                <span class="px-2 py-1 bg-blue-900 text-blue-200 text-xs rounded-full">Support</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #309907; color: white;">ML</span>
                             </div>
                             <p class="text-gray-300 text-sm text-center">
-                                97% headshot accuracy. The silent predator who always hits the mark.
+                                Clear waves quickly and roam to help other lanes
                             </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('mecha.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-l space-x-4 mt-4" style="color: white;">Luban no.7 - Mecha Shooter</p>
+                            <p class="text-lg" style="color: white;">Nuwa - Celestial</p>
+                            <p class="text-lg" style="color: white;">Di Renjie - Magistrate</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/noel.r.ii" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Team Member 4 -->
                 <div class="member-card rounded-lg overflow-hidden">
-                    <div class="member-card-inner relative">
-                        <div class="front bg-gray-900 p-6 rounded-lg border border-gray-700 h-full">
-                            <div class="flex justify-center mb-4">
-                                <div class="w-32 h-32 rounded-full bg-gradient-to-r from-purple-600 to-amber-500 flex items-center justify-center border-2 border-gray-700 animate-pulse">
-                                    <i class="fas fa-user text-5xl text-white"></i>
-                                </div>
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="4">
+                                <img src="mogul.jpg" alt="Player profile photo" class="profile-photo">
                             </div>
-                            <h3 class="text-xl font-bold text-center gradient-text">Karma</h3>
-                            <p class="text-gray-400 text-center mb-2">Support</p>
+                            <h3 class="text-xl font-bold text-center">CobraMalunggay</h3>
+                            <p class="text-gray-400 text-center mb-2">Roaming Lane</p>
                             <div class="flex justify-center space-x-2 mb-4">
-                                <span class="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded-full">Tactical</span>
-                                <span class="px-2 py-1 bg-green-900 text-green-200 text-xs rounded-full">Medic</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #920500; color: white;">Valorant</span>
                             </div>
                             <p class="text-gray-300 text-sm text-center">
                                 The backbone of the team with unparalleled game sense and positioning.
                             </p>
                         </div>
+                        <div class="member-card-back" style="background-image: url('cai.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4 " style="color: white;">Cai yan - Healing Tone</p>
+                            <p class="text-lg" style="color: white;">Guiguzi - Animist</p>
+                            <p class="text-lg" style="color: white;">Dolia - Seasinger</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/daryl.delarosa/" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.youtube.com/@mogulcyre4401" class="text-white animate-bounce :text-gray-400"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <button class="bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-700 hover:to-amber-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 button-hover-effect">
-                    MEET ALL PLAYERS
-                </button>
-            </div>
+
+                <!-- Team Member 5 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="5">
+                                <img src="harvey.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center">chryzbrown</h3>
+                            <p class="text-gray-400 text-center mb-2">Farm lane</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #309907; color: white;">ML</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                Farm gold fast and scale for late-game damage
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('daji.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Daji - Heartseeker</p>
+                            <p class="text-lg" style="color: white;">Lady Sun - Cannon Belle</p>
+                            <p class="text-lg" style="color: white;">Hou Yi - Solarus</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/hahaharveylim" class="text-white animate-bounce hover:text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="6">
+                                <img src="carl.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center">nazunaCH</h3>
+                            <p class="text-gray-400 text-center mb-2">All Around</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                Versatile and dependable, this player fits any comp and excels in both teamfights and solo plays
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('xin.webp');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Li Xin - Vengeance</p>
+                            <p class="text-lg" style="color: white;">Biron - Sparkmace</p>
+                            <p class="text-lg" style="color: white;">Dian Wei - Berserker</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/carlsenjohn.orquin.9" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 7 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="7">
+                                <img src="riri.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center">MasterRiriBabe</h3>
+                            <p class="text-gray-400 text-center mb-2">All Around</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #309907; color: white;">ML</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                Always ready to step up—this player fits any comp and delivers in both team clashes and solo skirmishes
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('lian.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Lian Po - Earthshaker</p>
+                            <p class="text-lg" style="color: white;">Bai Qi - Ultimate Weapon</p>
+                            <p class="text-lg" style="color: white;">Lu Bu - Unrivaled Warrior</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/riri.tarusanan" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 8 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="8">
+                                <img src="shdw1.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center">Shdw</h3>
+                            <p class="text-gray-400 text-center mb-2">All Around</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #b80404; color: white;">Dota 2</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #920500; color: white;">Valorant</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                A flexible and consistent performer, able to fit any team comp and dominate in both solo and team engagements
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('lol.jpg');">
+                            <h3 class="text-xl font-bold text-center rgb-glow-text">Currently Playing Wildrift</h3>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/j1moo" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 9 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="9">
+                                <img src="javier.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center">M4mbA</h3>
+                            <p class="text-gray-400 text-center mb-2">Farm Lane</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #309907; color: white;">ML</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                Optimize gold farming to accelerate scaling into powerful late-game damage
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('hou.jpg');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Hou Yi - Solarus</p>
+                            <p class="text-lg" style="color: white;">Liang - Tomemaster</p>
+                            <p class="text-lg" style="color: white;">Wukong - Monkey King</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/cojavier" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 10 -->
+                <div class="member-card rounded-lg overflow-hidden">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="profile-photo-wrapper" data-member-id="10">
+                                <img src="Aaron.jpg" alt="Player profile photo" class="profile-photo">
+                            </div>
+                            <h3 class="text-xl font-bold text-center gradient-text">Gr3ed_</h3>
+                            <p class="text-gray-400 text-center mb-2">Farm Lane</p>
+                            <div class="flex justify-center space-x-2 mb-4">
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #7e22ce; color: white;">HOK</span>
+                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #2c03c0; color: white;">Wildrift</span>
+                            </div>
+                            <p class="text-gray-300 text-sm text-center">
+                                Control the lane, farm efficiently, and scale into your team’s late-game powerhouse.
+                            </p>
+                        </div>
+                        <div class="member-card-back" style="background-image: url('lixin.webp');">
+                            <h3 class="text-l font-bold text-center rgb-glow-text">Top 3 Champions (HOK)</h3>
+                            <p class="text-lg space-x-4 mt-4" style="color: white;">Li Xin - Vengeance</p>
+                            <p class="text-lg" style="color: white;">Marco Polo - Gunslinger</p>
+                            <p class="text-lg" style="color: white;">Faith - Mighty Conqueror</p>
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <a href="https://www.facebook.com/MOFFLESAMA" class="text-white animate-bounce :text-gray-400"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -395,37 +749,339 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Game 1 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300">
-                    <div class="h-48 bg-gradient-to-r from-purple-900 to-amber-900 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-gray-500 transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-400 flex items-center justify-center">
+                        <img src="HOK.png" alt="HOK Game Logo" class="h-full w-full object-cover">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 gradient-text">VALORANT</h3>
+                        <h3 class="text-xl font-bold mb-2 gradient-text">Honor Of Kings</h3>
                         <div class="flex mb-4">
-                            <span class="px-2 py-1 bg-purple-900 text-purple-200 text-xs rounded-full mr-2">Tactical</span>
-                            <span class="px-2 py-1 bg-red-900 text-red-200 text-xs rounded-full">FPS</span>
+                            <span class="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full mr-2">Tactical</span>
+                            <span class="px-2 py-1 bg-gray-600 text-gray-200 text-xs rounded-full">FPS</span>
                         </div>
                         <p class="text-gray-300 mb-4">
-                            Our Valorant division has claimed multiple tournament victories with innovative strategies and precise execution.
+                        A fast-paced, 5v5 multiplayer online battle arena (MOBA) game developed by TiMi Studio Group and published by Tencent Games. Players choose from a diverse roster of heroes—each with unique abilities—and battle across dynamic maps to destroy enemy towers and the base. Known for its strategic gameplay, smooth controls, and strong competitive scene, it’s one of the most popular mobile games worldwide.
                         </p>
                         <div class="flex justify-between items-center">
                             <div class="flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                <span class="ml-1 text-sm text-gray-300">Rank: #3 Globally</span>
                             </div>
-                            <button class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm transition-all duration-300">
-                                View Team
-                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Game 2 -->
-                <div class="game-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-purple-500 transition-all duration-300">
-                    <div class="h-48 bg-gradient-to-r from-purple-900 to-amber-900 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-gray-500 transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-400 flex items-center justify-center">
+                         <img src="valorant.jpg" alt="Valorant Game Logo" class="h-full w-full object-cover">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6V4m0 2a2 2 0 100 
+                            4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 gradient-text">Valorant</h3>
+                        <div class="flex mb-4">
+                            <span class="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full mr-2">MOBA</span>
+                            <span class="px-2 py-1 bg-gray-600 text-gray-200 text-xs rounded-full">Strategy</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            A free-to-play 5v5 tactical first-person shooter developed by Riot Games. Combining precise gunplay with unique agent abilities, players engage in fast-paced rounds where strategy, teamwork, and sharp aim are key. With a blend of traditional FPS mechanics and hero-based gameplay, VALORANT has become a staple in competitive gaming and esports.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="game-card bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-gray-500 transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-r from-gray-700 to-gray-400 flex items-center justify-center">
+                        <img src="wild.png" alt="HOK Game Logo" class="h-full w-full object-cover">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7a2 2 0 00-2-2h-2V3a1 1 0 00-1-1H7a1 1 0 00-1 1v2H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V7z" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 gradient-text">Counter-Strike 2</h3>
+                        <div class="flex mb-4">
+                            <span class="px-2 py-1 bg-gray-700 text-gray-200 text-xs rounded-full mr-2">FPS</span>
+                            <span class="px-2 py-1 bg-gray-600 text-gray-200 text-xs rounded-full">Tactical</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            A free-to-play 5v5 MOBA developed by Riot Games for mobile and console. It brings the core gameplay of League of Legends to a faster, streamlined format with shorter matches, touch-friendly controls, and a redesigned map. Players choose from a wide roster of champions to battle in strategic team-based combat, aiming to destroy the enemy Nexus.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">UPCOMING EVENTS</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Catch us live at these major esports tournaments
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 glowing-border">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">Valorant Champions Tour</h3>
+                    <p class="text-gray-400 mb-4">
+                        <i class="fas fa-calendar-alt mr-2"></i> August 15-25, 2024
+                    </p>
+                    <p class="text-gray-400 mb-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Los Angeles, USA
+                    </p>
+                    <p class="text-gray-300 mb-4">
+                        Our Valorant team will be competing for the world championship title. Don't miss it!
+                    </p>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 font-semibold transition-colors duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="bg-gray-900 rounded-lg p-6 border border-gray-700 glowing-border">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">League of Legends World Championship</h3>
+                    <p class="text-gray-400 mb-4">
+                        <i class="fas fa-calendar-alt mr-2"></i> October 1-31, 2024
+                    </p>
+                    <p class="text-gray-400 mb-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Seoul, South Korea
+                    </p>
+                    <p class="text-gray-300 mb-4">
+                        The biggest event in League of Legends. Our team is ready to conquer the Summoner's Cup.
+                    </p>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 font-semibold transition-colors duration-300">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">GET IN TOUCH</h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Have questions or want to collaborate? Reach out to us!
+            </p>
+
+            <div class="max-w-2xl mx-auto bg-gray-800 p-8 rounded-lg border border-gray-700 glowing-border">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-left text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-gray-500 focus:border-gray-500" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-left text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-gray-500 focus:border-gray-500" placeholder="your@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-left text-sm font-medium text-gray-300">Message</label>
+                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-gray-500 focus:border-gray-500" placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-gray-700 to-gray-400 hover:from-gray-800 hover:to-gray-500 text-white px-6 py-3 rounded-lg text-lg font-semibold transition-all duration-300 button-hover-effect">
+                        SEND MESSAGE
+                    </button>
+                </form>
+            </div>
+
+            <div class="mt-12 flex justify-center space-x-6 text-3xl">
+                <a href="#" class="text-gray-400 hover:text-gray-500 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gray-500 transition-colors duration-300"><i class="fab fa-twitch"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gray-500 transition-colors duration-300"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gray-500 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto text-center text-gray-400">
+            <p>&copy; 2025 QPALS GAMING. All rights reserved.</p>
+            <p class="mt-2">Designed with <i class="fas fa-heart text-gray-500"></i> by MogulCyre</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#e8e8e8" // Primary color (Dark Gray)
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#e8e8e8"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff", // Accent color (Medium Gray)
+                    "opacity": 0.7,
+                    "width": 2
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu after clicking a link
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // NEW JAVASCRIPT FOR ANIMATED GOLD BORDER WITH PARTICLES
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileWrappers = document.querySelectorAll('.profile-photo-wrapper');
+            
+            profileWrappers.forEach(wrapper => {
+                const goldBorder = wrapper.querySelector('.gold-border-animated');
+                
+                // Create particles for each member
+                function createParticles() {
+                    const particleCount = 15; // Number of particles per member
+                    const angleStep = (Math.PI * 2) / particleCount;
+                    const radius = wrapper.offsetWidth / 2; // Radius of the circle
+                    
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.classList.add('particle');
+                        
+                        // Position particles along the border
+                        const angle = angleStep * i;
+                        const x = radius * Math.cos(angle);
+                        const y = radius * Math.sin(angle);
+                        
+                        // Set initial position and animation delay
+                        particle.style.left = `calc(50% + ${x}px)`;
+                        particle.style.top = `calc(50% + ${y}px)`;
+                        particle.style.animationDelay = `${Math.random() * 3}s`; // Random delay up to 3 seconds
+                        
+                        wrapper.appendChild(particle); // Append to the wrapper to keep particles within bounds
+                    }
+                }
+                
+                createParticles();
+            });
+        });
+    </script>
+</body>
+</html>
